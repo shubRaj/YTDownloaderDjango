@@ -1,1 +1,1 @@
-web: gunicorn imdbDjango.wsgi
+web: gunicorn YTDjango.wsgi
