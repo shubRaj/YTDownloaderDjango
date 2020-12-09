@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,11 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 't#l@e+4exy#2@blm5hb@n3$_x1ln+b!9v518ide4l#p&*66(iq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG_STATUS")
-ALLOWED_HOSTS = [os.environ.get("HOSTS")]
+DEBUG = True
+
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -75,14 +76,11 @@ WSGI_APPLICATION = 'YTDjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get("DB_ENGINE"),
-        'NAME': os.environ.get("DB_NAME"),
-        'PORT':os.environ.get("DB_PORT"),
-        'HOST':os.environ.get("DB_HOST"),
-        "USER":os.environ.get("DB_NAME"),
-        "PASSWORD":os.environ.get("DB_PASSWORD")
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
