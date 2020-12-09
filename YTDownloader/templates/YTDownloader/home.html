@@ -1,0 +1,63 @@
+{% extends 'YTDownloader/base.html' %}
+{% load ytfilters %}
+{% block content %}
+<form method="post" class="mt-3">
+    {% csrf_token %}
+    <input class="form-control" type="text" placeholder="Paste Your Video Link Here" name="query" aria-label="Search">
+</form>
+{% if  objects %}
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card m-3">
+            <img class="card-img-bottom img-thumbnail" src="{{thumbnail}}" alt="{{title}}">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card m-3">
+        <div class="card-body">
+            <div class="table-responsive-sm mt-2">
+                <table class="table">
+                    <tr>
+                        <th>
+                            Resolution
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Size
+                        </th>
+                        <th>
+                            Download
+                        </th>
+                    </tr>
+                    {% for object in objects %}
+                        <tr>
+                            {% if object.width %}
+                            <td>
+                                    {{object.width}}x{{object.height}}
+                            </td>
+                            {% else %}
+                            <td>
+                                Audio File
+                            </td>
+                            {% endif %}
+                            <td>
+                                {{object.type|split:";"}}
+                            </td>
+                            <td>
+                                {{object.size|filesizeformat}}
+                            </td>
+                            <td>
+                                <a href="{{object.url}}" target="_blank">Download</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}
